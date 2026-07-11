@@ -1,0 +1,247 @@
+<?php
+require_once __DIR__ . '/config.php';
+// Get Note Books
+$stmt = $db->prepare('SELECT NoteBook_id, NoteBook_name FROM NoteBook');
+$stmt->execute();
+// 4. Fetch all matching items
+$notebookitems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+function GlobalXSSFilter($param)
+{
+	$custom_entities = array(
+	'&' => '&amp;',
+	'"' => '&quot;',
+	"'" => '&apos;',
+	'/' => '&sol;',
+	'<' => '&lt;',
+	'>' => '&gt;',
+	'\\' => '&bsol;'
+	);
+	$param = strtr($param, $custom_entities);
+	return $param;
+}
+
+// Process Form
+$formerror = 0;
+
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['NoteBookID'])) {
+$NoteBookID = $_GET['NoteBookID'];
+if (preg_match('/[^0-9]/i',$NoteBookID)) {
+$formerror = 1;
+$msgcode[] = "3";
+}
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+$NoteBookID = $_POST['NoteBookID'];
+if(empty($NoteBookID))
+{
+$formerror = 1;
+$msgcode[] = "3";
+}
+if (preg_match('/[^0-9]/i',$NoteBookID)) {
+$formerror = 1;
+$msgcode[] = "3";
+}
+// Note title
+$new_note = $_POST['notebook'];
+if (empty($new_note)) {
+$formerror = 1;
+$msgcode[] = "22";
+}
+if (strlen($new_note) < 3)
+{
+$formerror = 1;
+$msgcode[] = "23";
+}
+elseif(strlen($new_note) > 160)
+{
+$formerror = 1;
+$msgcode[] = "14";
+}
+// Note content
+$notecontent = $_POST['notecontent'];
+if (strlen($notecontent) < 10)
+{
+$formerror = 1;
+$msgcode[] = "20";
+}
+elseif(strlen($notecontent) > 100000)
+{
+$formerror = 1;
+$msgcode[] = "21";
+}
+if(isset($msgcode) && in_array('3', $msgcode) && (in_array('18', $msgcode) || in_array('7', $msgcode) || in_array('13', $msgcode) || in_array('14', $msgcode)))
+{
+	$msgcode = [];
+	$msgcode[] = "3";
+}
+if(isset($msgcode) && in_array('22', $msgcode) && (in_array('23', $msgcode)))
+{
+	$msgcode = [];
+	$msgcode[] = "22";
+}
+}
+else
+{
+	$formerror = 1;
+}
+if ($formerror == 0){
+// Insert new Note
+$stmt = $db->prepare("INSERT INTO Notes (Notes_name, Notes_content, Notes_TimeStamp, Notes_TimeStamp_Modified, NoteBook_id) VALUES (:notetitle, :notecontent, :notetimestamp, :notetimestampmodified, :cat_id)");
+$stmt->execute([':notetitle' => $new_note, ':notecontent' => $notecontent, ':notetimestamp' => time(), ':notetimestampmodified' => time(), ':cat_id' => $NoteBookID]);
+header("Location: index.php?status=15");
+exit;
+}
+// Get current Notebook name for diplay.
+if(!empty($NoteBookID))
+{
+$stmt = $db->prepare("SELECT NoteBook_name FROM NoteBook WHERE NoteBook_id = :RowID");
+$stmt->execute([':RowID' => $NoteBookID]);
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$Notebook_Name = $row['NoteBook_name'];
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title><?php echo $Title;?></title>
+<meta name="viewport" content="user-scalable=yes, initial-scale=1, width=device-width">
+<link rel="stylesheet" href="./css/stylesheet.css">
+<script>
+window.onload=function(){
+var acc = document.getElementsByClassName("accordion");
+var panel = document.getElementsByClassName('panel');
+for (var i = 0; i < acc.length; i++) {
+acc[i].onclick = function() {
+var setClasses = !this.classList.contains('active');
+setClass(acc, 'active', 'remove');
+setClass(panel, 'show', 'remove');
+if (setClasses) {
+this.classList.toggle("active");
+this.nextElementSibling.classList.toggle("show");
+}
+}
+}
+function setClass(els, className, fnName) {
+for (var i = 0; i < els.length; i++) {
+els[i].classList[fnName](className);
+}
+}
+}
+</script>
+<link rel="stylesheet" type="text/css" href="css/prism.css">
+<script src="js/tinymce/tinymce.min.js"></script>
+<script src="js/prism.js"></script>
+</head>
+<body>
+<div class='all'>
+<div class='admin-header'>
+<div class='header-text'>
+<h3><a href="./"><?php echo $Title;?></a> <?php if (isset($Notebook_Name)) { echo ' <svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" fill="black" /></svg> '.$Notebook_Name; } ?> <svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" fill="black" /></svg> New Note</h3>
+</div>
+</div>
+<div class='admin-sidebar'>
+<nav><li><form action="./NoteSearch.php" method="POST" style="vertical-align: middle;line-height: 16px;"><input name="search" placeholder='Search...' class='search-input' type='search' autocomplete="off"></form></li></nav>
+<?php
+foreach ($notebookitems as $notebooks) {
+echo "<nav><a href=\"./NoteBookView.php?NoteBookView=" . $notebooks['NoteBook_id'] . "\"><li>" . $notebooks['NoteBook_name'] . "</li></a></nav>\n";
+}
+?>
+<nav><a href="./NoteAdd.php"><li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" style="vertical-align: middle;line-height: 16px;" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg> New Notebook</li></a></nav>
+</div>
+<div class='center-content'>
+<?php
+if(!empty($NoteBookID))
+{?>
+<form action="NoteAdd.php" method="POST">
+<div class="notebook-form">
+<input type="hidden" name="NoteBookID" value="<?php if(isset($NoteBookID)) { echo $NoteBookID; } ?>">
+<input name="notebook" placeholder="Note Title" type="text" id="text" class="notebook-form__fulllabel"<?php
+if(isset($_POST['submit'])){
+echo ' value="'.$_POST['notebook'].'"';
+} ?> autocomplete="off"></div>
+<br>
+<textarea id="myTextarea" name="notecontent" style="width:100%;height:750px;"><?php if(isset($_POST['submit'])){echo GlobalXSSFilter($_POST['notecontent']);} ?></textarea>
+<div style="text-align:left; margin-top: 20px;">
+<input type="submit" name="submit" id="submit" tabindex="4" value="Submit" class="btnlt">
+<div class="dropdown">
+<button class="btnrt" style="border-left:1px solid #0053a6;" onclick="return false;">
+<svg width="8" height="8" viewBox="0 0 24 24"><path fill="#fff" d="M12 21l-12-18h24z"></svg>
+<i class="fa fa-caret-down"></i>
+</button>
+<div class="dropdown-content">
+<a href="./">Cancel</a>
+</div>
+</div>
+</div>
+</form>
+<?php
+}
+else
+{
+echo '<div id="WarningMainContent">
+<div id="Warningalignleft"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path style="fill:#ff5500" d="M19.64 16.36 11.53 2.3A1.85 1.85 0 0 0 10 1.21 1.85 1.85 0 0 0 8.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/></svg></div>
+<div id="Warningalignright">No Notebook ID provided to add!</div>
+</div>';
+}
+?>
+</div>
+</div>
+<?php
+include "toast-code.php";
+?>
+<script>
+tinymce.init({
+    selector: '#myTextarea',
+    plugins: [
+      'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+      'searchreplace wordcount visualblocks visualchars code fullscreen',
+      'insertdatetime media nonbreaking save table contextmenu directionality',
+      'emoticons template paste textcolor colorpicker textpattern imagetools autosave codesample'
+    ],
+    toolbar1: 'insertfile undo redo | styleselect | bold italic | fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+    toolbar2: 'print preview media | forecolor backcolor emoticons | code codesample | restoredraft',
+  codesample_languages: [
+        {text: 'HTML/XML', value: 'markup'},
+        {text: 'JavaScript', value: 'javascript'},
+        {text: 'CSS', value: 'css'},
+        {text: 'PHP', value: 'php'},
+        {text: 'Ruby', value: 'ruby'},
+        {text: 'Python', value: 'python'},
+        {text: 'Java', value: 'java'},
+        {text: 'C', value: 'c'},
+        {text: 'C#', value: 'csharp'},
+        {text: 'C++', value: 'cpp'},
+        {text: 'Clike', value: 'clike'},
+        {text: 'ASP.net', value: 'aspnet'},
+        {text: 'Bash', value: 'bash'},
+        {text: 'Basic', value: 'basic'},
+        {text: 'bbcode', value: 'bbcode'},
+        {text: 'DNS', value: 'dns'},
+        {text: 'DNS zone file', value: 'dns-zone-file'},
+        {text: 'git', value: 'git'},
+        {text: 'ini', value: 'ini'},
+        {text: 'Java doc like', value: 'javadoclike'},
+        {text: 'Js extras', value: 'js-extras'},
+        {text: 'json', value: 'json'},
+        {text: 'Markdown', value: 'markdown'},
+        {text: 'Markup templating', value: 'markup-templating'},
+        {text: 'nginx', value: 'nginx'},
+        {text: 'PHP Doc', value: 'phpdoc'},
+        {text: 'PHP Extras', value: 'php-extras'},
+        {text: 'wasm', value: 'wasm'},
+        {text: 'Yaml', value: 'yaml'}
+    ],
+	browser_spellcheck: true,
+	contextmenu: true,
+	autosave_interval: "15s",
+	autosave_retention: "10080m",
+	valid_elements : '*[*]',
+    // without images_upload_url set, Upload tab won't show up
+    relative_urls : false,
+	remove_script_host : true,
+	convert_urls : false,
+});
+</script>
+</body>
+</html>
