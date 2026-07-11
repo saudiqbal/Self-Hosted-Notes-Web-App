@@ -341,7 +341,7 @@ max-width: fit-content;
 }
 
 #modal-close {
-  background: #fff url('images/modal-close.png') no-repeat center center;
+  background: #fff url('../images/modal-close.png') no-repeat center center;
   cursor: pointer;
   display: block;
   filter: alpha(opacity=60);
