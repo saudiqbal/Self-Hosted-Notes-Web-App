@@ -37,6 +37,7 @@ $stmt = $db->prepare('SELECT Notes_id, Notes_name, NoteBook_id FROM Notes WHERE 
 $stmt->execute([':id' => $NoteBookView]);
 // 4. Fetch all matching items
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$NoteCount = count($items);
 }
 else
 {
@@ -261,6 +262,12 @@ echo '<div id="WarningMainContent">
 }
 ?>
 </div>
+<?php echo '<div class="md-card">
+<div class="infoboxleft"></div>
+<div class="infoboxmiddle"></div>
+<div class="infoboxright"><span class="ClassicButton">Total Notes: '.$NoteCount.'</span></div>
+</div>';
+?>
 </div>
 </div>
 <script>
