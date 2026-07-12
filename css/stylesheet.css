@@ -63,7 +63,7 @@ cursor: pointer;
 li:hover {
 list-style-type: none;
 padding: 15px;
-background: #151515;
+background: #2a2a2a;
 border-bottom: 0.5px solid black;
 box-shadow: 0px 0px 4px rgba(0,0,0) inset;
 }
