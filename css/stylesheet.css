@@ -106,16 +106,30 @@ z-index: -1000;
 padding-top: 30px;
 margin: 20px;
 }
+.center-content > p > a {
+color: #000;
+text-decoration: none;
+}
 .md-card {
+display: flex;
+flex-wrap: wrap;
 width: 100%;
 padding: 5px;
 margin: 10px 0px;
 background-color: #fff;
 box-shadow:rgba(0,0,0,.2) 0px 0px 2px, rgba(0,0,0,.2) 0px 0px 2px, rgba(0,0,0,.2) -1px 0px 2px, rgba(0,0,0,.2) 1px 0px 2px;
 position: relative;
+line-height: 25px;
+}
+.infoboxleft, .infoboxright {
+width: fit-content;
+line-height: 25px;
+}
+.infoboxmiddle {
+flex-grow: 1;
+line-height: 20px;
 }
 p > code {
-display: flex;
 align-items: center;
 padding: .100rem .800rem;
 margin-bottom: 0;
@@ -131,7 +145,6 @@ border-radius: .25rem;
 width: fit-content;
 }
 .inline-code {
-display: flex;
 align-items: center;
 padding: .100rem .800rem;
 margin-bottom: 0;
