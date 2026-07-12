@@ -101,9 +101,9 @@ width: auto;
 }
 .center-content {
 width: auto;
-padding-left: 175px;
+padding-left: 165px;
 z-index: -1000;
-padding-top: 30px;
+padding-top: 20px;
 margin: 20px;
 }
 .center-content > p > a {
