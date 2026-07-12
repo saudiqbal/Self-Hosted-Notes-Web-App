@@ -44,6 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['search'])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
 	$searchTerm = $_POST['search'];
 }
+if (!isset($searchTerm))
+{
+echo "Error getting search term";
+exit;
+}
 //$result = $db->query("SELECT rowid FROM PersonalEvents");
 if(isset($_GET['page_id']))
 {
