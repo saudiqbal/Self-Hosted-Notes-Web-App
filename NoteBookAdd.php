@@ -1,5 +1,9 @@
 <?php
 require_once __DIR__ . '/config.php';
+$db = new PDO("sqlite:$db_filename");
+$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$db->exec('PRAGMA foreign_keys = ON;');
 // Get Note Books
 $stmt = $db->prepare('SELECT NoteBook_id, NoteBook_name FROM NoteBook');
 $stmt->execute();
