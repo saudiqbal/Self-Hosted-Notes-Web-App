@@ -152,6 +152,7 @@ echo ' value="'.$_POST['notebook'].'"';
 </div>
 </div>
 </div>
+<div style="height:50px;"></div>
 </form>
 <?php
 }

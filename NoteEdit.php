@@ -165,6 +165,7 @@ echo $_POST['notecontent'];
 </div>
 </div>
 </div>
+<div style="height:50px;"></div>
 </form>
 <?php
 }
