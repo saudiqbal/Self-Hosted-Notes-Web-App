@@ -5,12 +5,14 @@ $stmt = $db->prepare('SELECT NoteBook_id, NoteBook_name FROM NoteBook');
 $stmt->execute();
 // 4. Fetch all matching items
 $notebookitems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$NoteBookCount = count($notebookitems);
 
 // 3. Prepare and execute the query safely
 $stmt = $db->prepare('SELECT Notes_id, Notes_name, NoteBook_id FROM Notes');
 $stmt->execute();
 // 4. Fetch all matching items
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$NoteCount = count($items);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -220,6 +222,12 @@ echo '<div id="WarningMainContent">
 }
 ?>
 </div>
+<?php echo '<div class="md-card">
+<div class="infoboxleft"></div>
+<div class="infoboxmiddle"></div>
+<div class="infoboxright"><span class="ClassicButton">Total Notebooks: '.$NoteBookCount.'</span> <span class="ClassicButton">Total Notes: '.$NoteCount.'</span></div>
+</div>';
+?>
 </div>
 </div>
 <?php
