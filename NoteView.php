@@ -77,8 +77,8 @@ echo "<nav><a href=\"./NoteBookView.php?NoteBookView=" . $notebooks['NoteBook_id
 <nav><a href="./NoteBookAdd.php"><li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" style="vertical-align: middle;line-height: 16px;" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg> New Notebook</li></a></nav>
 </div>
 <div class='center-content'>
-<?php echo '<div class="md-card">'. $NoteName .'
-<div class="float-right"><a href="NoteEdit.php?NoteID='.$NoteID.'" class="ClassicButton" title="Edit" style="text-decoration:none;">Edit</a> <a id="modal-1" onclick="modalfunction(); return false;" class="ClassicButton" title="Edit" style="text-decoration:none;">Delete</a> <span class="ClassicButton">Created: '. date("Y-m-d H:i:s", $item['Notes_TimeStamp']) .'</span> <span class="ClassicButton">Modified: '. date("Y-m-d H:i:s", $item['Notes_TimeStamp_Modified']) .'</span></div><div style="clear: both;"></div>
+<?php echo '<div class="md-card"><span style="font-size: x-large;">'. $NoteName .'
+</span><div class="float-right"><a href="NoteEdit.php?NoteID='.$NoteID.'" class="ClassicButton" title="Edit" style="text-decoration:none;">Edit</a> <a id="modal-1" onclick="modalfunction(); return false;" class="ClassicButton" title="Edit" style="text-decoration:none;">Delete</a> <span class="ClassicButton">Created: '. date("Y-m-d H:i:s", $item['Notes_TimeStamp']) .'</span> <span class="ClassicButton">Modified: '. date("Y-m-d H:i:s", $item['Notes_TimeStamp_Modified']) .'</span></div><div style="clear: both;"></div>
 </div>';
 echo $NoteContent;
 ?>
