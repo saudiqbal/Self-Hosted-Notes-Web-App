@@ -269,7 +269,7 @@ echo '<div id="WarningMainContent">
 <?php echo '<div class="md-card">
 <div class="infoboxleft"></div>
 <div class="infoboxmiddle"></div>
-<div class="infoboxright"><span class="ClassicButton">Total Notes: '.$NoteCount.'</span></div>
+<div class="infoboxright"><span style="font-size: small;">Total Notes: '.$NoteCount.'</span></div>
 </div>';
 ?>
 </div>
