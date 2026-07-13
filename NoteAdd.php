@@ -179,6 +179,7 @@ const isSmallScreen = window.matchMedia('(max-width: 1023.5px)').matches;
 tinymce.init({
   selector: '#myTextarea',
   license_key: 'gpl',
+  toolbar_sticky: true,
   plugins: [
     'accordion', 'advlist', 'anchor', 'autolink', 'autoresize', 'autosave', 'charmap', 'code',
     'codesample', 'directionality', 'emoticons', 'fullscreen', 'help', 'image',
