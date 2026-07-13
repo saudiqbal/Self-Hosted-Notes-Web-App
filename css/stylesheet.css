@@ -113,7 +113,7 @@ text-decoration: none;
 .md-card {
 display: flex;
 flex-wrap: wrap;
-width: calc(100% - 10px);
+width: calc(100% - 5px);
 padding: 5px;
 margin: 10px 0px;
 background-color: #fff;
@@ -806,5 +806,8 @@ box-sizing:border-box;
 }
 .row-container .card {
 width: 100%;
+}
+.md-card {
+width: calc(100% - 14px);
 }
 }
