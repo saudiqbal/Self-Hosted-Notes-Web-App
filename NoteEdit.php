@@ -187,16 +187,36 @@ echo '<div id="WarningMainContent">
 include "toast-code.php";
 ?>
 <script>
+const useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const isSmallScreen = window.matchMedia('(max-width: 1023.5px)').matches;
 tinymce.init({
-    selector: '#myTextarea',
-    plugins: [
-      'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-      'searchreplace wordcount visualblocks visualchars code fullscreen',
-      'insertdatetime media nonbreaking save table contextmenu directionality',
-      'emoticons template paste textcolor colorpicker textpattern imagetools autosave codesample'
-    ],
-    toolbar1: 'insertfile undo redo | styleselect | bold italic | fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-    toolbar2: 'print preview media | forecolor backcolor emoticons | code codesample | restoredraft',
+  selector: '#myTextarea',
+  license_key: 'gpl',
+  plugins: [
+    'accordion', 'advlist', 'anchor', 'autolink', 'autoresize', 'autosave', 'charmap', 'code',
+    'codesample', 'directionality', 'emoticons', 'fullscreen', 'help', 'image',
+    'importcss', 'insertdatetime', 'link', 'lists', 'media',
+    'nonbreaking', 'pagebreak', 'preview', 'quickbars', 'save', 'searchreplace',
+    'table', 'visualblocks', 'visualchars', 'wordcount',
+  ],
+  menubar: 'file edit view insert format tools table help',
+  toolbar: "undo redo | accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | link image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview | save print | pagebreak anchor codesample | ltr rtl",
+  autosave_ask_before_unload: true,
+  autosave_interval: '30s',
+  autosave_prefix: '{path}{query}-{id}-',
+  autosave_restore_when_empty: false,
+  autosave_retention: '7d',
+  image_advtab: true,
+  importcss_append: true,
+  height: 600,
+  image_caption: true,
+  quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+  noneditable_class: 'mceNonEditable',
+  toolbar_mode: 'sliding',
+  contextmenu: 'link image table',
+  skin: useDarkMode ? 'oxide-dark' : 'oxide',
+  content_css: useDarkMode ? 'dark' : 'default',
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
   codesample_languages: [
         {text: 'HTML/XML', value: 'markup'},
         {text: 'JavaScript', value: 'javascript'},
@@ -228,15 +248,6 @@ tinymce.init({
         {text: 'wasm', value: 'wasm'},
         {text: 'Yaml', value: 'yaml'}
     ],
-	browser_spellcheck: true,
-	contextmenu: true,
-	autosave_interval: "15s",
-	autosave_retention: "10080m",
-	valid_elements : '*[*]',
-    // without images_upload_url set, Upload tab won't show up
-    relative_urls : false,
-	remove_script_host : true,
-	convert_urls : false,
 });
 </script>
 </body>
