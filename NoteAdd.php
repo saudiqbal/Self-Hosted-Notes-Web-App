@@ -180,6 +180,7 @@ tinymce.init({
   selector: '#myTextarea',
   license_key: 'gpl',
   toolbar_sticky: true,
+  toolbar_sticky_offset: 40,
   plugins: [
     'accordion', 'advlist', 'anchor', 'autolink', 'autoresize', 'autosave', 'charmap', 'code',
     'codesample', 'directionality', 'emoticons', 'fullscreen', 'help', 'image',
