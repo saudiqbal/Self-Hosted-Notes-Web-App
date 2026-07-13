@@ -192,7 +192,7 @@ tinymce.init({
   autosave_interval: '30s',
   autosave_prefix: '{path}{query}-{id}-',
   autosave_restore_when_empty: false,
-  autosave_retention: '7d',
+  autosave_retention: '10080m',
   image_advtab: true,
   importcss_append: true,
   height: 600,
