@@ -69,6 +69,9 @@ draggable: true
 <div class='admin-header'>
 <div class='header-text'>
 <h3><a href="./"><?php echo $Title; echo '</a>'; echo ' <a href="NoteBookView.php?NoteBookView='.$NoteBookID.'"><svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" fill="black" /></svg> '. $row['NoteBook_name'];?></a></h3>
+<div class='header-greet'>
+<a href='NoteEdit.php?NoteID=<?php echo $NoteID; ?>' title="Edit" style="text-decoration:none;color:#7ebcff;margin-right: 20px;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></a><a id="modal-1" onclick="modalfunction(); return false;" title="Delete" style="color:#FF0000;text-decoration:none;margin-right: 20px;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg></a>
+</div>
 </div>
 </div>
 <div class='admin-sidebar'>
@@ -84,7 +87,7 @@ echo "<nav><a href=\"./NoteBookView.php?NoteBookView=" . $notebooks['NoteBook_id
 <?php echo '<div class="md-card">
 <div class="infoboxleft"><span style="font-size: x-large;">'. $NoteName .'</span></div>
 <div class="infoboxmiddle"></div>
-<div class="infoboxright"><a href="NoteEdit.php?NoteID='.$NoteID.'" class="ClassicButton" title="Edit" style="text-decoration:none;">Edit</a> <a id="modal-1" onclick="modalfunction(); return false;" class="ClassicButton" title="Edit" style="text-decoration:none;">Delete</a> <span class="ClassicButton">Created: '. date("Y-m-d H:i:s", $item['Notes_TimeStamp']) .'</span> <span class="ClassicButton">Modified: '. date("Y-m-d H:i:s", $item['Notes_TimeStamp_Modified']) .'</span></div>
+<div class="infoboxright"><span style="font-size: small;">Created: '. date("Y-m-d H:i:s", $item['Notes_TimeStamp']) .' / Modified: '. date("Y-m-d H:i:s", $item['Notes_TimeStamp_Modified']) .'</span></div>
 </div>';
 echo $NoteContent;
 ?>
