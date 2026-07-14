@@ -69,6 +69,7 @@ else
 }
 if ($formerror == 0){
 // Insert new Notebook
+$new_notebook = trim($new_notebook);
 $stmt = $db->prepare("UPDATE NoteBook SET NoteBook_name = :name WHERE NoteBook_id = :RowID");
 $stmt->bindValue(':name', $new_notebook);
 $stmt->bindValue(':RowID', $NoteBookEdit);

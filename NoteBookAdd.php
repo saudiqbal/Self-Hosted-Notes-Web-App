@@ -45,6 +45,7 @@ else
 }
 if ($formerror == 0){
 // Insert new note book
+$new_notebook = trim($new_notebook);
 $stmt = $db->prepare("INSERT INTO NoteBook (NoteBook_name) VALUES (:name)");
 $stmt->bindValue(':name', $new_notebook);
 $stmt->execute();

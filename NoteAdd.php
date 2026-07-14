@@ -91,6 +91,7 @@ else
 }
 if ($formerror == 0){
 // Insert new Note
+$new_note = trim($new_note);
 $stmt = $db->prepare("INSERT INTO Notes (Notes_name, Notes_content, Notes_TimeStamp, Notes_TimeStamp_Modified, NoteBook_id) VALUES (:notetitle, :notecontent, :notetimestamp, :notetimestampmodified, :cat_id)");
 $stmt->execute([':notetitle' => $new_note, ':notecontent' => $notecontent, ':notetimestamp' => time(), ':notetimestampmodified' => time(), ':cat_id' => $NoteBookID]);
 header("Location: NoteBookView.php?NoteBookView=$NoteBookID");

@@ -75,6 +75,7 @@ else
 }
 if ($formerror == 0){
 // Edit Note
+$new_note = trim($new_note);
 $stmt = $db->prepare("UPDATE Notes SET Notes_name = :notetitle, Notes_content = :notecontent, Notes_TimeStamp_Modified = :notetimestampmodified WHERE Notes_id = :RowID");
 $stmt->execute([':notetitle' => $new_note, ':notecontent' => $notecontent, ':notetimestampmodified' => time(), ':RowID' => $NoteID]);
 header("Location: NoteView.php?NoteBookView=$NoteID");
