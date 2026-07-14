@@ -70,7 +70,7 @@ if (isset($_GET['setup']))
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				$db->exec('PRAGMA foreign_keys = ON;');
 				$db->exec("CREATE TABLE NoteBook (NoteBook_id INTEGER PRIMARY KEY AUTOINCREMENT, NoteBook_name TEXT NOT NULL)");
-				$db->exec("CREATE TABLE Notes (Notes_id INTEGER PRIMARY KEY AUTOINCREMENT, Notes_name TEXT NOT NULL, Notes_content TEXT NOT NULL, Notes_TimeStamp TEXT, Notes_TimeStamp_Modified TEXT, NoteBook_id INTEGER, FOREIGN KEY (NoteBook_id) REFERENCES NoteBook(NoteBook_id) ON DELETE CASCADE)");
+				$db->exec("CREATE TABLE Notes (Notes_id INTEGER PRIMARY KEY AUTOINCREMENT, Notes_name TEXT NOT NULL, Notes_content TEXT NOT NULL, Notes_TimeStamp TEXT, Notes_TimeStamp_Modified TEXT, NoteBook_id INTEGER, S TEXT, FOREIGN KEY (NoteBook_id) REFERENCES NoteBook(NoteBook_id) ON DELETE CASCADE)");
 				$message = "<div style=\"text-align: center;\">Database Created</div><div style=\"text-align: center;margin: 25px;\"><a href=\"./\" style=\"color:#000;background-color: #4CAF50;padding: 10px 24px;border-radius: 4px;cursor: default;text-decoration: none;\">Continue</a></div>\n";
 				$db = NULL;
 			}

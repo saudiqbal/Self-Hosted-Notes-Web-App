@@ -29,7 +29,7 @@ $NoteCount = count($items);
 <div class='all'>
 <div class='admin-header'>
 <div class='header-text'>
-<h3><a href="./"><?php echo $Title;?></a></h3>
+<h3><a href="./"><?php echo $Title;?></a> <svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" fill="black" /></svg> Starred Notes</h3>
 </div>
 </div>
 <div class='admin-sidebar'>
@@ -55,7 +55,7 @@ exit;
 }
 $page = $page_id;
 }
-$result = $db->query('SELECT rowid FROM Notes');
+$result = $db->query('SELECT rowid FROM Notes WHERE S = 1');
 $rows = $result->fetchAll();
 $total_pages = count($rows);
 $limit = 25;
@@ -74,7 +74,7 @@ $start = ($page - 1) * $limit; 			//first item to display on this page
 else
 $start = 0;
 
-$result = $db->query("SELECT rowid, Notes_id, Notes_name, NoteBook_id FROM Notes ORDER BY Notes_TimeStamp_Modified DESC, rowid DESC LIMIT '$start', '$limit'");
+$result = $db->query("SELECT rowid, Notes_id, Notes_name, NoteBook_id FROM Notes WHERE S = 1 ORDER BY Notes_TimeStamp_Modified DESC, rowid DESC LIMIT '$start', '$limit'");
 
 $i = 1;
 echo '<div class="row-flex">' . "\xA";
@@ -222,7 +222,7 @@ if(empty($rows))
 {
 echo '<div id="WarningMainContent">
 <div id="Warningalignleft"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path style="fill:#ff5500" d="M19.64 16.36 11.53 2.3A1.85 1.85 0 0 0 10 1.21 1.85 1.85 0 0 0 8.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/></svg></div>
-<div id="Warningalignright">No notes were found in your notebook!</div>
+<div id="Warningalignright">No starred notes!</div>
 </div>';
 }
 ?>
