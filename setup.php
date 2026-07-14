@@ -85,7 +85,7 @@ if (isset($_GET['setup']))
 else
 {
 	$message = '<div style="display: flex;justify-content: center;align-items: center;"><form method="GET" id="login">
-<div class="login-group"><div class="login-group-prepend"><span class="login-group-text"><input id="password" name="password" type="password" style="border: none; outline: none;" placeholder=\'Password\' required></span></div><input type="submit" name="submit" id="submit" value="submit" class="login-control"></div></div>
+<div class="login-group"><div class="login-group-prepend"><span class="login-group-text"><input id="password" name="password" type="password" style="border: none; outline: none;" placeholder=\'Password\' required></span></div><input type="submit" name="submit" id="submit" value="Submit" class="login-control"></div></div>
 </form></div>';
 }
 ?>
