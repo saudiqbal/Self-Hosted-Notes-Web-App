@@ -64,6 +64,7 @@ exit;
 }
 $page = $page_id;
 }
+$searchTerm = trim($searchTerm);
 $result = $db->query('SELECT Notes_id, Notes_name, Notes_content FROM Notes WHERE Notes_name LIKE :search OR Notes_content LIKE :search');
 $result->execute([':search' => '%' . $searchTerm . '%']);
 $rows = $result->fetchAll(PDO::FETCH_ASSOC);
