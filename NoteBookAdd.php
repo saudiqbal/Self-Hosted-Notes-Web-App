@@ -77,10 +77,10 @@ echo "<nav><a href=\"./NoteBookView.php?NoteBookView=" . $notebooks['NoteBook_id
 </div>
 <div class='center-content'>
 <form action="NoteBookAdd.php" class="notebook-form" method="POST">
-<input name="notebook" placeholder="Notebook Name" type="text" id="text" class="notebook-form__label" <?php if (isset($_POST['submit'])){
+<input name="notebook" placeholder="Notebook Name" type="text" id="text" tabindex="1" class="notebook-form__label" <?php if (isset($_POST['submit'])){
 echo 'value="'.$_POST['notebook'].'"';
 } ?> autocomplete="off" required>
-<button class="notebook-form__submit" type="submit" name="submit">Add</button>
+<button class="notebook-form__submit" tabindex="2" type="submit" name="submit">Add</button>
 </form>
 </div>
 </div>

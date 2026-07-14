@@ -140,7 +140,7 @@ if(!empty($NoteID))
 <form action="NoteEdit.php" method="POST">
 <div class="notebook-form">
 <input type="hidden" name="NoteID" value="<?php if(isset($NoteID)) { echo $NoteID; } ?>">
-<input name="notebook" placeholder="Note Title" type="text" id="text" class="notebook-form__fulllabel"<?php
+<input name="notebook" placeholder="Note Title" type="text" id="text" tabindex="1" class="notebook-form__fulllabel"<?php
 if(isset($NoteName))
 {
 	echo ' value="'.$NoteName.'"';
@@ -149,7 +149,7 @@ elseif(isset($_POST['submit'])){
 echo ' value="'.$_POST['notebook'].'"';
 } ?> required></div>
 <br>
-<textarea id="myTextarea" name="notecontent" style="width:100%;height:750px;"><?php
+<textarea id="myTextarea" name="notecontent" tabindex="2" style="width:100%;height:750px;"><?php
 if(isset($NoteContent))
 {
 echo $NoteContent;
@@ -158,7 +158,7 @@ elseif(isset($_POST['submit'])){
 echo $_POST['notecontent'];
 } ?></textarea>
 <div style="text-align:left; margin-top: 20px;">
-<input type="submit" name="submit" id="submit" tabindex="4" value="Submit" class="btnlt">
+<input type="submit" name="submit" id="submit" tabindex="3" value="Submit" class="btnlt">
 <div class="dropdown">
 <button class="btnrt" style="border-left:1px solid #0053a6;" onclick="return false;">
 <svg width="8" height="8" viewBox="0 0 24 24"><path fill="#fff" d="M12 21l-12-18h24z"></svg>

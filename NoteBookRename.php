@@ -114,7 +114,7 @@ if(!empty($NoteBookEdit))
 {?>
 <form action="NoteBookRename.php" class="notebook-form" method="POST">
 <input type="hidden" name="NoteBookEdit" value="<?php if(isset($NoteBookEdit)) { echo $NoteBookEdit; } ?>">
-<input name="notebook" placeholder="Notebook Name" type="text" id="text" class="notebook-form__label"<?php
+<input name="notebook" placeholder="Notebook Name" type="text" id="text" tabindex="1" class="notebook-form__label"<?php
 if(isset($Notebook_Name))
 {
 	echo ' value="'.$Notebook_Name.'"';
@@ -122,7 +122,7 @@ if(isset($Notebook_Name))
 elseif(isset($_POST['submit'])){
 echo ' value="'.$_POST['notebook'].'"';
 } ?> required>
-<button class="notebook-form__submit" type="submit" name="submit">Rename</button>
+<button class="notebook-form__submit" tabindex="2" type="submit" name="submit">Rename</button>
 </form>
 <?php
 }
