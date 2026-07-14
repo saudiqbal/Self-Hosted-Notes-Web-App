@@ -48,12 +48,12 @@ $msgcode[] = "14";
 }
 // Note content
 $notecontent = $_POST['notecontent'];
-if (strlen($notecontent) < 10)
+if (strlen($notecontent) < 1)
 {
 $formerror = 1;
 $msgcode[] = "20";
 }
-elseif(strlen($notecontent) > 100000)
+elseif(strlen($notecontent) > 1000000)
 {
 $formerror = 1;
 $msgcode[] = "21";
@@ -77,7 +77,7 @@ if ($formerror == 0){
 // Edit Note
 $stmt = $db->prepare("UPDATE Notes SET Notes_name = :notetitle, Notes_content = :notecontent, Notes_TimeStamp_Modified = :notetimestampmodified WHERE Notes_id = :RowID");
 $stmt->execute([':notetitle' => $new_note, ':notecontent' => $notecontent, ':notetimestampmodified' => time(), ':RowID' => $NoteID]);
-header("Location: index.php?status=15");
+header("Location: NoteView.php?NoteBookView=$NoteID");
 exit;
 }
 // Get current Notebook name for diplay.

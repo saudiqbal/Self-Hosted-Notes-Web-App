@@ -64,12 +64,12 @@ $msgcode[] = "14";
 }
 // Note content
 $notecontent = $_POST['notecontent'];
-if (strlen($notecontent) < 10)
+if (strlen($notecontent) < 1)
 {
 $formerror = 1;
 $msgcode[] = "20";
 }
-elseif(strlen($notecontent) > 100000)
+elseif(strlen($notecontent) > 1000000)
 {
 $formerror = 1;
 $msgcode[] = "21";
@@ -93,7 +93,7 @@ if ($formerror == 0){
 // Insert new Note
 $stmt = $db->prepare("INSERT INTO Notes (Notes_name, Notes_content, Notes_TimeStamp, Notes_TimeStamp_Modified, NoteBook_id) VALUES (:notetitle, :notecontent, :notetimestamp, :notetimestampmodified, :cat_id)");
 $stmt->execute([':notetitle' => $new_note, ':notecontent' => $notecontent, ':notetimestamp' => time(), ':notetimestampmodified' => time(), ':cat_id' => $NoteBookID]);
-header("Location: index.php?status=15");
+header("Location: NoteBookView.php?NoteBookView=$NoteBookID");
 exit;
 }
 // Get current Notebook name for diplay.
