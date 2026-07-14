@@ -84,7 +84,7 @@ echo "<nav><a href=\"./NoteBookView.php?NoteBookView=" . $notebooks['NoteBook_id
 <a id="modal-1" onclick="modalfunction(); return false;"></a>
 <?php if(isset($NoteBookDelete))
 {
-	echo '<a id="modal-1" onclick="modalfunction(); return false;" class="notebook-form__submit">Delete</a>';
+	echo '<a id="modal-1" onclick="modalfunction(); return false;" class="notebook-form__submit" style="margin: 50px 50px;">Delete Notebook</a>';
 }
 else
 {
