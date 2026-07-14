@@ -29,7 +29,7 @@ $NoteCount = count($items);
 <div class='all'>
 <div class='admin-header'>
 <div class='header-text'>
-<h3><a href="./"><?php echo $Title;?></a> <svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" fill="black" /></svg> Starred Notes</h3>
+<h3><a href="./"><?php echo $Title;?></a> <svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" fill="black" /></svg> Starred Notes <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700" stroke="#ffa5a5" stroke-width="1"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" /></svg></h3>
 </div>
 </div>
 <div class='admin-sidebar'>
