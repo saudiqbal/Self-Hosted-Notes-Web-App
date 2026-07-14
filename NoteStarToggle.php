@@ -5,10 +5,6 @@ $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $db->exec('PRAGMA foreign_keys = ON;');
 
-$stmt = $db->prepare('SELECT NoteBook_name FROM NoteBook WHERE NoteBook_id = :id LIMIT 1');
-$stmt->execute([':id' => $NoteBookID]);
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
-
 // Process Form
 $formerror = 0;
 
@@ -31,7 +27,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 if($row['S'] == '1')
 {
 $stmt = $db->prepare("UPDATE Notes SET S = :starredstate WHERE Notes_id = :RowID");
-$stmt->execute([':starredstate' => '0', ':RowID' => $NoteID]);
+$stmt->execute([':starredstate' => NULL, ':RowID' => $NoteID]);
 header("Location: NoteView.php?NoteBookView=$NoteID");
 exit;
 }
