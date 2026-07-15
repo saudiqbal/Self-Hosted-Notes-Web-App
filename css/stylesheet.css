@@ -30,6 +30,12 @@ width: 100%;
 z-index: 2000;
 line-height: 20px;
 }
+.header-left-block {
+display: inline-flex;
+align-items: center;
+float: left;
+line-height: 20px;
+}
 .header-greet {
 display: inline-block;
 float: right;
