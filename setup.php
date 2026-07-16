@@ -1,7 +1,6 @@
 <?php
 // Login Password
 $password='';
-
 $fresh='1';
 if($fresh=='1')
 {
