@@ -32,13 +32,16 @@ line-height: 20px;
 }
 .header-left-block {
 display: inline-flex;
+flex-wrap: wrap;
 align-items: center;
 float: left;
 line-height: 20px;
 }
 .header-greet {
+background: #101010;
 display: inline-block;
 float: right;
+flex-wrap: wrap;
 }
 h3 {
 margin: 0;
@@ -46,6 +49,7 @@ display: inline-block;
 color: #fff;
 }
 .header-text {
+background: #101010;
 color: #fff;
 padding-left: 16px;
 line-height: 20px;
@@ -786,7 +790,13 @@ text-align: center;
 .admin-header {
 background: #101010;
 position: relative;
-padding: 15px 0px;
+padding: 0px;
+}
+.header-greet {
+width: 100%;
+}
+.header-text {
+padding-left: 0px;
 }
 .center-content {
 width: 100%;
