@@ -47,6 +47,10 @@ elseif(strlen($new_notebook) > 50)
 $formerror = 1;
 $msgcode[] = "14";
 }
+if (preg_match('/[^a-zA-Z0-9\s]/',$new_notebook)) {
+$formerror = 1;
+$msgcode[] = "25";
+}
 $stmt = $db->prepare('SELECT NoteBook_name FROM NoteBook WHERE NoteBook_name LIKE :NoteBook_name LIMIT 1');
 // 4. Fetch all matching items
 $stmt->execute([':NoteBook_name' => $new_notebook]);
@@ -117,12 +121,12 @@ if(!empty($NoteBookEdit))
 <form action="NoteBookRename.php" class="notebook-form" method="POST">
 <input type="hidden" name="NoteBookEdit" value="<?php if(isset($NoteBookEdit)) { echo $NoteBookEdit; } ?>">
 <input name="notebook" placeholder="Notebook Name" type="text" id="text" tabindex="1" class="notebook-form__label"<?php
-if(isset($Notebook_Name))
+if(isset($_POST['submit']))
 {
-	echo ' value="'.$Notebook_Name.'"';
+	echo ' value="'.$_POST['notebook'].'"';
 }
-elseif(isset($_POST['submit'])){
-echo ' value="'.$_POST['notebook'].'"';
+elseif(isset($Notebook_Name)){
+	echo ' value="'.$Notebook_Name.'"';
 } ?> required>
 <button class="notebook-form__submit" tabindex="2" type="submit" name="submit">Rename</button>
 </form>

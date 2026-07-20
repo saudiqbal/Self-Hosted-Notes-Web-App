@@ -29,6 +29,7 @@ $codes=array(
 22 => array('Note title is empty', '#ff2424'),
 23 => array('Note title is too short, minimum is 3 characters (160 max)', '#ff2424'),
 24 => array('Note title is empty', '#ff2424'),
+25 => array('Invalid characters in name', '#ff2424'),
 );
 echo '<script src="js/toastify.js"></script>' . "\xA";
 foreach($msgcode as $toastcode)

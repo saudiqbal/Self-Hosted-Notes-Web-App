@@ -28,6 +28,10 @@ elseif(strlen($new_notebook) > 50)
 $formerror = 1;
 $msgcode[] = "14";
 }
+if (preg_match('/[^a-zA-Z0-9\s]/',$new_notebook)) {
+$formerror = 1;
+$msgcode[] = "25";
+}
 $stmt = $db->prepare('SELECT NoteBook_name FROM NoteBook WHERE NoteBook_name LIKE :NoteBook_name LIMIT 1');
 // 4. Fetch all matching items
 $stmt->execute([':NoteBook_name' => $new_notebook]);

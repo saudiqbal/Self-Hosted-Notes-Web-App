@@ -10,6 +10,21 @@ $stmt->execute();
 // 4. Fetch all matching items
 $notebookitems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+function GlobalXSSFilter($param)
+{
+	$custom_entities = array(
+	'&' => '&amp;',
+	'"' => '&quot;',
+	"'" => '&apos;',
+	'/' => '&sol;',
+	'<' => '&lt;',
+	'>' => '&gt;',
+	'\\' => '&bsol;'
+	);
+	$param = strtr($param, $custom_entities);
+	return $param;
+}
+
 $formerror = 0;
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['NoteBookView'])) {
 $NoteBookView = $_GET['NoteBookView'];
@@ -95,7 +110,7 @@ echo "<a href=\"./NoteBookView.php?NoteBookView=" . $notebooks['NoteBook_id'] . 
 </div>
 <div class='center-content'>
 <?php echo '<div class="md-card">
-<div class="infoboxleft"><span style="font-size: x-large;">'. $NoteName .'</span></div>
+<div class="infoboxleft"><span style="font-size: x-large;">'. GlobalXSSFilter($NoteName) .'</span></div>
 <div class="infoboxmiddle"></div>
 <div class="infoboxright"><span style="font-size: small;">Created: '. date("Y-m-d H:i:s", $item['Notes_TimeStamp']) .' / Modified: '. date("Y-m-d H:i:s", $item['Notes_TimeStamp_Modified']) .'</span></div>
 </div>';

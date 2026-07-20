@@ -17,6 +17,21 @@ $stmt->execute();
 // 4. Fetch all matching items
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $NoteCount = count($items);
+
+function GlobalXSSFilter($param)
+{
+	$custom_entities = array(
+	'&' => '&amp;',
+	'"' => '&quot;',
+	"'" => '&apos;',
+	'/' => '&sol;',
+	'<' => '&lt;',
+	'>' => '&gt;',
+	'\\' => '&bsol;'
+	);
+	$param = strtr($param, $custom_entities);
+	return $param;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +97,7 @@ foreach($result as $row)
 {
 echo '<a class="card" href="NoteView.php?NoteBookView='.$row['Notes_id'].'">' . "\xA";
 echo '<div class="cardtext flexible">' . "\xA";
-echo $row['Notes_name'] . "\xA";
+echo GlobalXSSFilter($row['Notes_name']) . "\xA";
 echo '</div>' . "\xA";
 echo '<div class="cardtitle"><svg width="16" height="16" viewBox="0 0 24 24" style="vertical-align: middle;"><path d="M14 2h-7.229l7.014 7h-13.785v6h13.785l-7.014 7h7.229l10-10z" fill="#6edb00" /></svg></div>' . "\xA";
 echo '</a>' . "\xA";

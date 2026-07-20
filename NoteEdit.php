@@ -143,21 +143,21 @@ if(!empty($NoteID))
 <div class="notebook-form">
 <input type="hidden" name="NoteID" value="<?php if(isset($NoteID)) { echo $NoteID; } ?>">
 <input name="notebook" placeholder="Note Title" type="text" id="text" tabindex="1" class="notebook-form__fulllabel"<?php
-if(isset($NoteName))
+if(isset($_POST['submit']))
 {
-	echo ' value="'.$NoteName.'"';
+	echo ' value="'.$_POST['notebook'].'"';
 }
-elseif(isset($_POST['submit'])){
-echo ' value="'.$_POST['notebook'].'"';
+elseif(isset($NoteName)){
+	echo ' value="'.$NoteName.'"';
 } ?> required></div>
 <br>
 <textarea id="myTextarea" name="notecontent" tabindex="2" style="width:100%;height:750px;"><?php
-if(isset($NoteContent))
+if(isset($_POST['submit']))
 {
-echo $NoteContent;
+	echo $_POST['notecontent'];
 }
-elseif(isset($_POST['submit'])){
-echo $_POST['notecontent'];
+elseif(isset($NoteContent)){
+	echo $NoteContent;
 } ?></textarea>
 <div style="text-align:left; margin-top: 20px;">
 <input type="submit" name="submit" id="submit" tabindex="3" value="Submit" class="btnlt">
