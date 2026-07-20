@@ -43,7 +43,8 @@ display: inline-block;
 float: right;
 flex-wrap: wrap;
 }
-h3 {
+.header-title {
+font-weight: bold;
 margin: 0;
 display: inline-block;
 color: #fff;

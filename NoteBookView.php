@@ -60,15 +60,15 @@ exit;
 <div class='all'>
 <div class='admin-header'>
 <div class='header-text'>
-<h3><a href="./"><?php echo $Title;?></a> <div class="dropdownClickable">
-<span class="dropbtnClickable"><?php if(isset($current_Notebook)) { echo ' <svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" fill="black" /></svg> '. $current_Notebook; } ?> </span>
+<span class="header-title"><a href="./"><?php echo $Title;?></a> <div class="dropdownClickable">
+<span class="dropbtnClickable"><?php if(isset($current_Notebook)) { echo ' <svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> '. $current_Notebook; } ?> </span>
 <div class="dropdownClickable-content">
 <a href="./NoteBookRename.php?NoteBookEdit=<?php echo $NoteBookView;?>">Notebook Rename</a>
 <a href="./NoteBookDelete.php?NoteBookDelete=<?php echo $NoteBookView;?>">Notebook Delete</a>
 </div>
 </div>
 <a href="./NoteAdd.php?NoteBookID=<?php echo $NoteBookView;?>">Add New Note <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" style="vertical-align: middle;line-height: 20px;" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></a>
-</h3>
+</span>
 </div>
 </div>
 <div class='admin-sidebar'>
