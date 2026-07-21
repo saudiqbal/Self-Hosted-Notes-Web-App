@@ -68,7 +68,7 @@ draggable: true
 <div class='all'>
 <div class='admin-header'>
 <div class='header-text'>
-<span class="header-title"><a href="./"><?php echo $Title;?></a> <svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> Notebook Delete<?php if (isset($Notebook_Name)) { echo ' <svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> '.$Notebook_Name; } ?></span>
+<span class="header-title"><a href="./"><?php echo $Title;?></a> <svg width="14" height="14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> Notebook Delete<?php if (isset($Notebook_Name)) { echo ' <svg width="14" height="14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> '.$Notebook_Name; } ?></span>
 </div>
 </div>
 <div class='admin-sidebar'>

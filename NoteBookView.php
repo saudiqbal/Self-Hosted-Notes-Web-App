@@ -76,7 +76,7 @@ exit;
 <div class='admin-header'>
 <div class='header-text'>
 <span class="header-title"><a href="./"><?php echo $Title;?></a> <div class="dropdownClickable">
-<span class="dropbtnClickable"><?php if(isset($current_Notebook)) { echo ' <svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> '. $current_Notebook; } ?> </span>
+<span class="dropbtnClickable"><?php if(isset($current_Notebook)) { echo ' <svg width="14" height="14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> '. $current_Notebook; } ?> </span>
 <div class="dropdownClickable-content">
 <a href="./NoteBookRename.php?NoteBookEdit=<?php echo $NoteBookView;?>">Notebook Rename</a>
 <a href="./NoteBookDelete.php?NoteBookDelete=<?php echo $NoteBookView;?>">Notebook Delete</a>
