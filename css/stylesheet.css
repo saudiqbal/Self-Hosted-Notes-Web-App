@@ -409,40 +409,50 @@ z-index: 999;
 }
 /* MODAL END */
 #WarningMainContent {
-border: 1px solid #ffd34f;
-margin: 25px 25px;
+border: 1px solid #ff870d;
+margin: 25px auto;
+padding:0px 0px 0px 0px;
 width: fit-content;
 height: fit-content;
--moz-box-shadow: 0 0 25px #ffd34f;
--webkit-box-shadow: 0 0 25px #ffd34f;
-box-shadow: 0 0 25px #ffd34f;
 -webkit-border-radius: 5px 5px 5px 5px;
 -moz-border-radius: 5px 5px 5px 5px;
 border-radius: 5px 5px 5px 5px;
 color: #00529B;
-background: #fff3c7;
+background: #ffe2c3;
 text-align: left;
-display: inline-block;
-overflow:hidden;
-word-break: break-all;
+display: flex;
+align-items: stretch;
 }
 #Warningalignleft {
+display: flex;
 float: left;
-background-color:#ffd34f;
+align-items: center;
+background-color:#ff870d;
 color:#FFFFFF;
 font-size: 14pt;
 text-align: left;
-padding: 5px 20px;
-height: 100%;
+padding: 15px 20px;
+-moz-box-shadow: 0 0 25px #FF9633;
+-webkit-box-shadow: 0 0 25px #FF9633;
+box-shadow: 0 0 25px #FF9633;
+-webkit-border-radius: 5px 0px 0px 5px;
+-moz-border-radius: 5px 0px 0px 5px;
+border-radius: 5px 0px 0px 5px;
 }
 #Warningalignright {
+display: flex;
 float: right;
-background-color:#fff3c7;
+background-color:#ffe2c3;
 color:#000000;
 font-size: 14pt;
+padding: 15px 20px;
 text-align: left;
-padding: 5px 20px;
-height: 100%;
+-moz-box-shadow: 0 0 25px #FF9633;
+-webkit-box-shadow: 0 0 25px #FF9633;
+box-shadow: 0 0 25px #FF9633;
+-webkit-border-radius: 0px 5px 5px 0px;
+-moz-border-radius: 0px 5px 5px 0px;
+border-radius: 0px 5px 5px 0px;
 }
 /* ====== Input button ====== */
 *:focus {
