@@ -833,4 +833,30 @@ width: calc(100% - 14px);
 .notebook-form__label {
 min-width: 50%;
 }
+#WarningMainContent {
+display: flex;
+flex-direction: column;
+width: calc(100% - 15px);
+}
+#Warningalignleft, #Warningalignright {
+justify-content: center;
+text-align: center;
+box-sizing: border-box;
+}
+#Warningalignleft {
+-moz-box-shadow: 0 0 25px #FF9633;
+-webkit-box-shadow: 0 0 25px #FF9633;
+box-shadow: 0 0 25px #FF9633;
+-webkit-border-radius: 5px 5px 0px 0px;
+-moz-border-radius: 5px 5px 0px 0px;
+border-radius: 5px 5px 0px 0px;
+}
+#Warningalignright {
+-moz-box-shadow: 0 0 25px #FF9633;
+-webkit-box-shadow: 0 0 25px #FF9633;
+box-shadow: 0 0 25px #FF9633;
+-webkit-border-radius: 0px 0px 5px 5px;
+-moz-border-radius: 0px 0px 5px 5px;
+border-radius: 0px 0px 5px 5px;
+}
 }
