@@ -860,3 +860,11 @@ box-shadow: 0 0 25px #FF9633;
 border-radius: 0px 0px 5px 5px;
 }
 }
+@media print {
+.admin-header, .admin-sidebar {
+display: none !important;
+}
+.center-content {
+padding: 0px;
+}
+}
