@@ -878,4 +878,8 @@ a[href^="http"]:after{
 content: " (" attr(href) ") ";
 font-size: 9pt;
 }
+pre, code {
+white-space: pre-wrap !important;
+overflow-wrap: break-word;
+}
 }
