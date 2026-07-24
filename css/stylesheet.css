@@ -876,5 +876,6 @@ thead {display:table-header-group}
 a {color:#000000}
 a[href^="http"]:after{
 content: " (" attr(href) ") ";
+font-size: 9pt;
 }
 }
