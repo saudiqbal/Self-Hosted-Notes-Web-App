@@ -870,6 +870,8 @@ display: none !important;
 .center-content {
 padding: 0px;
 background: #fff;
+float: none !important;
+display: block !important;
 }
 tr, td, th {page-break-inside:avoid}
 thead {display:table-header-group}
