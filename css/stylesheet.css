@@ -861,10 +861,20 @@ border-radius: 0px 0px 5px 5px;
 }
 }
 @media print {
+body {
+background: #fff;
+}
 .admin-header, .admin-sidebar {
 display: none !important;
 }
 .center-content {
 padding: 0px;
+background: #fff;
+}
+tr, td, th {page-break-inside:avoid}
+thead {display:table-header-group}
+a {color:#000000}
+a[href^="http"]:after{
+content: " (" attr(href) ") ";
 }
 }
