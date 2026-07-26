@@ -41,7 +41,7 @@ if (strlen($new_note) < 3)
 $formerror = 1;
 $msgcode[] = "23";
 }
-elseif(strlen($new_note) > 50)
+elseif(strlen($new_note) > 160)
 {
 $formerror = 1;
 $msgcode[] = "14";
