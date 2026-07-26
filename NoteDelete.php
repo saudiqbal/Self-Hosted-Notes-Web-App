@@ -22,6 +22,7 @@ if ($formerror == 0){
 // Delete Notebook
 $stmt = $db->prepare("DELETE FROM Notes WHERE Notes_id = :id");
 $stmt->execute([':id' => $NoteDelete]);
+$db->exec('VACUUM');
 header("Location: index.php?status=19");
 exit;
 }
