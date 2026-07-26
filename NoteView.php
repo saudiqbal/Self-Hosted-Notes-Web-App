@@ -41,6 +41,11 @@ if ($formerror == 0){
 $stmt = $db->prepare('SELECT Notes_id, Notes_name, Notes_content, NoteBook_id, Notes_TimeStamp, Notes_TimeStamp_Modified, S FROM Notes WHERE Notes_id = :category');
 $stmt->execute(['category' => $NoteBookView]);
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if(count($items) == 0)
+{
+	echo 'Invalid ID';
+	exit;
+}
 
 foreach ($items as $item) {
 $NoteID = $item['Notes_id'];
