@@ -136,7 +136,7 @@ if (!empty($NoteTags)) {
 echo "<div class=\"tag-container\" id=\"tagContainer\" style=\"margin: 20px 0px;\">
 <ul id=\"tagList\"></ul>";
 foreach ($NoteTags as $tags_array_item) {
-	echo '<li><a href="NoteTagsQuery.php?tag='.$tags_array_item.'">'.$tags_array_item.'</a></li>';
+	echo '<a href="NoteTagsQuery.php?tag='.$tags_array_item.'"><li>'.$tags_array_item.'</li></a>';
 }
 echo "<span id=\"tagInput\"></span>
 </div>";

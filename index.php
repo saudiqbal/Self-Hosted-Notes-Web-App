@@ -260,7 +260,7 @@ if (!empty($NoteTags)) {
 echo "<div class=\"tag-container\" id=\"tagContainer\" style=\"margin: 20px 0px;\">
 <ul id=\"tagList\"></ul>";
 foreach ($NoteTags as $tags_array_item => $tags_array_value) {
-	echo '<li><a href="NoteTagsQuery.php?tag='.$tags_array_value['name'].'">'.$tags_array_value['name'].' ('.$tags_array_value['total'].')</a></li>';
+	echo '<a href="NoteTagsQuery.php?tag='.$tags_array_value['name'].'"><li>'.$tags_array_value['name'].' ('.$tags_array_value['total'].')</li></a>';
 }
 echo "<span id=\"tagInput\"></span>
 </div>";
