@@ -74,6 +74,23 @@ elseif(strlen($notecontent) > 1000000)
 $formerror = 1;
 $msgcode[] = "21";
 }
+// Tags
+if (!empty($_POST['tags'])) {
+$new_tags = $_POST['tags'];
+$new_tags = strtolower($new_tags);
+$tags_array = explode(',', $new_tags);
+foreach ($tags_array as $tags_array_item) {
+	if (strlen($tags_array_item) < 2 OR strlen($tags_array_item) > 20) {
+		$formerror = 1;
+		$msgcode[] = "26";
+	}
+	if (preg_match('/[^a-zA-Z0-9\s]/',$tags_array_item)) {
+		$formerror = 1;
+		$msgcode[] = "27";
+	}
+}
+$tagsset = true;
+}
 if(isset($msgcode) && in_array('3', $msgcode) && (in_array('18', $msgcode) || in_array('7', $msgcode) || in_array('13', $msgcode) || in_array('14', $msgcode)))
 {
 	$msgcode = [];
@@ -94,6 +111,29 @@ if ($formerror == 0){
 $new_note = trim($new_note);
 $stmt = $db->prepare("INSERT INTO Notes (Notes_name, Notes_content, Notes_TimeStamp, Notes_TimeStamp_Modified, NoteBook_id) VALUES (:notetitle, :notecontent, :notetimestamp, :notetimestampmodified, :cat_id)");
 $stmt->execute([':notetitle' => $new_note, ':notecontent' => $notecontent, ':notetimestamp' => time(), ':notetimestampmodified' => time(), ':cat_id' => $NoteBookID]);
+/**
+* Associates an array of text tags with a specific article.
+*/
+function addTagsToArticle(PDO $db, int $articleId, array $tags): void {
+	foreach ($tags as $tagName) {
+		$tagName = trim(strtolower($tagName));
+		if (empty($tagName)) continue;
+		// 1. Insert tag if it doesn't exist, or select it if it does
+		$stmt = $db->prepare("INSERT INTO tags (name) VALUES (?) ON CONFLICT(name) DO UPDATE SET name=name");
+		$stmt->execute([$tagName]);
+		// 2. Fetch the ID of the tag
+		$stmt = $db->prepare("SELECT id FROM tags WHERE name = ?");
+		$stmt->execute([$tagName]);
+		$tagId = $stmt->fetchColumn();
+		// 3. Link the article and the tag in the junction table
+		$stmt = $db->prepare("INSERT OR IGNORE INTO article_tags (article_id, tag_id) VALUES (?, ?)");
+		$stmt->execute([$articleId, $tagId]);
+	}
+}
+if ($tagsset) {
+$lastInsertedId = $db->lastInsertId();
+addTagsToArticle($db, $lastInsertedId, $tags_array);
+}
 header("Location: NoteBookView.php?NoteBookView=$NoteBookID");
 exit;
 }
@@ -126,7 +166,7 @@ $Notebook_Name = $row['NoteBook_name'];
 <div class='admin-sidebar'>
 <nav class="nav-items"><form action="./NoteSearch.php" method="POST" style="vertical-align: middle;line-height: 16px;"><input name="search" placeholder='Search...' class='search-input' type='search' autocomplete="off"></form></nav>
 <nav class="nav-items"><a href="./NoteAdd.php"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" style="vertical-align: middle;line-height: 16px;" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg> New Notebook</a></nav>
-<a href="./NoteStarred.php"><nav class="nav-items">Starred Notes</nav></a>
+<a href="./NoteStarred.php"><nav class="nav-items">Starred Notes And Tags</nav></a>
 <?php
 foreach ($notebookitems as $notebooks) {
 echo "<a href=\"./NoteBookView.php?NoteBookView=" . $notebooks['NoteBook_id'] . "\"><nav class=\"nav-items\">" . $notebooks['NoteBook_name'] . "</nav></a>\n";
@@ -146,6 +186,11 @@ echo ' value="'.$_POST['notebook'].'"';
 } ?> autocomplete="off"></div>
 <br>
 <textarea id="myTextarea" name="notecontent" tabindex="2" style="width:100%;height:750px;"><?php if(isset($_POST['submit'])){echo GlobalXSSFilter($_POST['notecontent']);} ?></textarea>
+<div class="tag-container" id="tagContainer" style="margin: 20px 0px;">
+<ul id="tagList"></ul>
+<input type="text" id="tagInput" placeholder="Press Enter to add tags...">
+</div>
+<input type="hidden" name="tags" id="hiddenTagsInput">
 <div style="text-align:left; margin-top: 20px;">
 <input type="submit" name="submit" id="submit" tabindex="3" value="Submit" class="btnlt">
 <div class="dropdown">
@@ -240,6 +285,75 @@ tinymce.init({
         {text: 'Yaml', value: 'yaml'}
     ],
 });
+</script>
+<script>
+// Array to keep track of added tags
+let tags = [];
+// On Page Load
+<?php
+if (!empty($_POST['tags'])) {
+	$new_tags = $_POST['tags'];
+	$new_tags = strtolower($new_tags);
+	$tags_array = explode(',', $new_tags);
+	echo 'tags = [';
+	foreach ($tags_array as $tags_array_item) {
+		echo '"'.$tags_array_item.'",';
+	}
+	echo '];';
+}
+?>
+window.addEventListener("DOMContentLoaded", () => {
+const listContainer = document.getElementById("tagList");
+tags.forEach(tag => {
+//tags.push(tag);
+renderTags();
+//const li = document.createElement("li");
+//li.textContent = tag;
+//listContainer.appendChild(li);
+});
+});
+const tagContainer = document.getElementById('tagContainer');
+const tagInput = document.getElementById('tagInput');
+const tagList = document.getElementById('tagList');
+const hiddenTagsInput = document.getElementById('hiddenTagsInput');
+// Focus input if user clicks anywhere inside the custom tag container
+tagContainer.addEventListener('click', () => {
+tagInput.focus();
+});
+// Watch key presses inside the input field
+tagInput.addEventListener('keydown', (e) => {
+if (e.key === 'Enter') {
+e.preventDefault(); // Stop standard form submission on Enter
+let text = tagInput.value.trim();
+// Validate that the input is not empty and not a duplicate
+if (text !== "" && !tags.includes(text)) {
+tags.push(text);
+renderTags();
+}
+tagInput.value = ""; // Clear field
+}
+});
+// Render the visual list items inside the UI
+function renderTags() {
+tagList.innerHTML = "";
+tags.forEach((tag, index) => {
+const li = document.createElement('li'); // Create tag node
+li.textContent = tag;
+const removeBtn = document.createElement('button'); // Create 'x' button
+removeBtn.textContent = "×";
+removeBtn.type = "button";
+removeBtn.onclick = () => removeTag(index);
+li.appendChild(removeBtn);
+tagList.appendChild(li);
+});
+// Sync string array with hidden input (e.g., "html,css,javascript")
+hiddenTagsInput.value = tags.join(',');
+}
+// Remove tag by its specific array placement index
+function removeTag(index) {
+tags.splice(index, 1);
+renderTags();
+}
 </script>
 </body>
 </html>

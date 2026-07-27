@@ -1,8 +1,8 @@
 <?php
 // Login Password
-$password='';
+$password='1ZcTlAZcBwZKbQz3AvIYtTkQVPSo2WYx';
 
-$fresh='1';
+$fresh='0';
 if($fresh=='1')
 {
 	// Password Generator
@@ -71,6 +71,9 @@ if (isset($_GET['setup']))
 				$db->exec('PRAGMA foreign_keys = ON;');
 				$db->exec("CREATE TABLE NoteBook (NoteBook_id INTEGER PRIMARY KEY AUTOINCREMENT, NoteBook_name TEXT NOT NULL)");
 				$db->exec("CREATE TABLE Notes (Notes_id INTEGER PRIMARY KEY AUTOINCREMENT, Notes_name TEXT NOT NULL, Notes_content TEXT NOT NULL, Notes_TimeStamp TEXT, Notes_TimeStamp_Modified TEXT, NoteBook_id INTEGER, S TEXT, FOREIGN KEY (NoteBook_id) REFERENCES NoteBook(NoteBook_id) ON DELETE CASCADE)");
+				$db->exec("CREATE TABLE tags (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL UNIQUE)");
+				$db->exec("CREATE TABLE IF NOT EXISTS article_tags (article_id INTEGER, tag_id INTEGER, PRIMARY KEY (article_id, tag_id), FOREIGN KEY (article_id) REFERENCES Notes(Notes_id) ON DELETE CASCADE, FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE)");
+				$db->exec("CREATE INDEX IF NOT EXISTS idx_article_tags_tag ON article_tags(tag_id)");
 				$message = "<div style=\"text-align: center;\">Database Created</div><div style=\"text-align: center;margin: 25px;\"><a href=\"./\" style=\"color:#000;background-color: #4CAF50;padding: 10px 24px;border-radius: 4px;cursor: default;text-decoration: none;\">Continue</a></div>\n";
 				$db = NULL;
 			}

@@ -89,7 +89,7 @@ exit;
 <div class='admin-sidebar'>
 <nav class="nav-items"><form action="./NoteSearch.php" method="POST" style="vertical-align: middle;line-height: 16px;"><input name="search" placeholder='Search...' class='search-input' type='search' autocomplete="off"></form></nav>
 <a href="./NoteBookAdd.php"><nav class="nav-items"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" style="vertical-align: middle;line-height: 16px;" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg> New Notebook</nav></a>
-<a href="./NoteStarred.php"><nav class="nav-items">Starred Notes</nav></a>
+<a href="./NoteStarred.php"><nav class="nav-items">Starred Notes And Tags</nav></a>
 <?php
 foreach ($notebookitems as $notebooks) {
 echo "<a href=\"./NoteBookView.php?NoteBookView=" . $notebooks['NoteBook_id'] . "\"><nav class=\"nav-items\">" . $notebooks['NoteBook_name'] . "</nav></a>\n";

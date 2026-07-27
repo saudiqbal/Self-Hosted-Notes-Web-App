@@ -30,6 +30,8 @@ $codes=array(
 23 => array('Note title is too short, minimum is 3 characters (160 max)', '#ff2424'),
 24 => array('Note title is empty', '#ff2424'),
 25 => array('Invalid characters in name', '#ff2424'),
+26 => array('Invalid tags length (Min 2, Max 20)', '#ff2424'),
+27 => array('Invalid characters in tags', '#ff2424'),
 );
 echo '<script src="js/toastify.js"></script>' . "\xA";
 foreach($msgcode as $toastcode)
