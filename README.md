@@ -2,7 +2,9 @@
 Main article https://saudiqbal.github.io/PHP/Personal-Self-Hosted-Notes-Web-App-PHP-SQLite.html
 
 [2026-07-27] Added tagging support
+
 [2026-07-14] Added an option to star notes
+
 [2026-07-11] Initial commit
 
 ## Screenshots
