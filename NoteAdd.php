@@ -160,12 +160,12 @@ $Notebook_Name = $row['NoteBook_name'];
 <div class='all'>
 <div class='admin-header'>
 <div class='header-text'>
-<span class="header-title"><a href="./"><?php echo $Title;?></a> <?php if (isset($Notebook_Name)) { echo ' <svg width="14" height="14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> '.$Notebook_Name; } ?> <svg width="14" height="14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> New Note</span>
+<span class="header-title"><a href="./"><?php echo $Title;?></a> <?php if (isset($Notebook_Name)) { echo ' <svg width="14" height="14" viewBox="0 0 100 100"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> '.$Notebook_Name; } ?> <svg width="14" height="14" viewBox="0 0 100 100"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> New Note</span>
 </div>
 </div>
 <div class='admin-sidebar'>
 <nav class="nav-items"><form action="./NoteSearch.php" method="POST" style="vertical-align: middle;line-height: 16px;"><input name="search" placeholder='Search...' class='search-input' type='search' autocomplete="off"></form></nav>
-<nav class="nav-items"><a href="./NoteAdd.php"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" style="vertical-align: middle;line-height: 16px;" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg> New Notebook</a></nav>
+<nav class="nav-items"><a href="./NoteAdd.php"><svg viewBox="0 0 24 24" width="16" height="16" style="vertical-align: middle;line-height: 16px;transform: translateY(-1px);" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg> New Notebook</a></nav>
 <a href="./NoteStarred.php"><nav class="nav-items">Starred Notes And Tags</nav></a>
 <?php
 foreach ($notebookitems as $notebooks) {
