@@ -53,7 +53,7 @@ $NoteTags = getArticlesByTag($db, $tag);
 <div class='all'>
 <div class='admin-header'>
 <div class='header-text'>
-<div class='header-left-block'><span class="header-title"><a href="./"><?php echo $Title;?></a> <svg width="14" height="14" viewBox="0 0 100 100"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> Tags <svg width="14" height="14" viewBox="0 0 100 100"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> <?php echo $tag;?></span></div>
+<div class='header-left-block'><span class="header-title"><a href="./"><?php echo $Title;?></a> <svg width="14" height="14" viewBox="0 0 100 100"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> Tag <svg width="14" height="14" viewBox="0 0 100 100"><polygon fill="#fff" points="20,15 80,50 20,85" /></svg> <?php echo $tag;?></span></div>
 </div>
 </div>
 <div class='admin-sidebar'>
