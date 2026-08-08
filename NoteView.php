@@ -145,6 +145,15 @@ echo "<span id=\"tagInput\"></span>
 
 </div>
 </div>
+<script>
+document.querySelectorAll('a[href]').forEach(link => {
+const href = link.getAttribute('href');
+if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+if (!link.textContent.includes(href)) {
+link.classList.add('print-full-url');
+}
+});
+</script>
 <?php
 include "toast-code.php";
 ?>

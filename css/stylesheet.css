@@ -913,8 +913,12 @@ display: block !important;
 tr, td, th {page-break-inside:avoid}
 thead {display:table-header-group}
 a {color:#000000}
-a[href^="http"]:after{
-content: " (" attr(href) ") ";
+a::after {
+content: "";
+}
+a.print-full-url::after {
+content: " (" attr(href) ")";
+text-decoration: none;
 font-size: 9pt;
 }
 pre, code {
