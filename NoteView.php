@@ -145,6 +145,7 @@ echo "<span id=\"tagInput\"></span>
 
 </div>
 </div>
+<?php if ($PrintURL == '1') : ?>
 <script>
 document.querySelectorAll('a[href]').forEach(link => {
 const href = link.getAttribute('href');
@@ -154,6 +155,7 @@ link.classList.add('print-full-url');
 }
 });
 </script>
+<?php endif; ?>
 <?php
 include "toast-code.php";
 ?>
