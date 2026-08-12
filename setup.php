@@ -2,7 +2,7 @@
 // Login Password
 $password='';
 
-$fresh='0';
+$fresh='1';
 if($fresh=='1')
 {
 	// Password Generator
