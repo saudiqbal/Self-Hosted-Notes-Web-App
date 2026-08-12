@@ -1,6 +1,6 @@
 <?php
 // Login Password
-$password='1ZcTlAZcBwZKbQz3AvIYtTkQVPSo2WYx';
+$password='';
 
 $fresh='0';
 if($fresh=='1')
